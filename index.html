@@ -1151,7 +1151,7 @@ main > section[tabindex="-1"]:focus, .fo-sc:focus, .pm-sc:focus, .ci-sc:focus { 
           <div><h2 class="about-t" id="aboutT">Homero Jiménez Cabrera</h2><p class="about-r">Marca, diseño y sistemas con IA</p><p class="about-loc">Madrid y Granada</p></div>
         </div>
         <p class="about-p">Lidero equipos de marca, diseño y marketing, y construyo los sistemas con IA que les permiten producir más sin bajar el nivel. Automatizo el camino de cada pieza, del encargo a la publicación, para que el equipo dedique su tiempo a lo que marca la diferencia: la IA produce; el criterio decide.</p>
-        <div class="about-x"><button type="button" class="btn-solid" id="copyMail">homerojimenezcabrera@gmail.com</button><a class="lnk" href="https://www.linkedin.com/in/homerojimenezcabrera" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+        <div class="about-x"><button type="button" class="btn-solid" id="copyMail">hola@homer0.es</button><a class="lnk" href="https://www.linkedin.com/in/homer0" target="_blank" rel="noopener">LinkedIn ↗</a></div>
       </div>
       <details class="about-card glass about-dd">
         <summary class="about-sum"><span class="tag">Trayectoria</span><small>De diseñador júnior a Brand &amp; Marketing Lead en menos de dos años.</small><i aria-hidden="true"></i></summary>
@@ -1185,7 +1185,7 @@ main > section[tabindex="-1"]:focus, .fo-sc:focus, .pm-sc:focus, .ci-sc:focus { 
   </section>
   <section class="end" id="end">
     <h2 class="wm" aria-label="homer cero punto es"><span class="wm-h" aria-hidden="true"><span class="ch">h</span><span class="ch">o</span><span class="ch">m</span><span class="ch">e</span><span class="ch">r</span></span><span class="wm-0" id="slotEnd" aria-hidden="true"><span class="ring0" id="ring0e"></span></span><span class="wm-es" aria-hidden="true"><span class="sat-w"><span class="ghost" id="ghostE"></span><span class="sat" id="dotEnd"></span></span><span class="es-t">es</span></span></h2>
-    <p class="foot"><a href="mailto:homerojimenezcabrera@gmail.com">homerojimenezcabrera@gmail.com</a> · <a href="https://www.linkedin.com/in/homerojimenezcabrera" target="_blank" rel="noopener">LinkedIn&nbsp;↗</a></p>
+    <p class="foot"><a href="mailto:hola@homer0.es">hola@homer0.es</a> · <a href="https://www.linkedin.com/in/homer0" target="_blank" rel="noopener">LinkedIn&nbsp;↗</a></p>
   </section>
 </main>
 
@@ -3375,7 +3375,7 @@ $('.intro-l').addEventListener('pointerleave', () => { const r = $('#hola').getB
 /* trayectoria y formación cambian el alto de la página al abrirse: se vuelve a medir al empezar y al acabar */
 $$('.about-dd').forEach(d => d.addEventListener('toggle', () => { measure(); setTimeout(measure, 600); }));
 $('#copyMail').addEventListener('click', async e => {
-  const b = e.currentTarget, mail = 'homerojimenezcabrera@gmail.com';
+  const b = e.currentTarget, mail = 'hola@homer0.es';
   try { await navigator.clipboard.writeText(mail); b.textContent = 'Correo copiado'; $('#live').textContent = 'Correo copiado'; }
   catch { const rg = document.createRange(); rg.selectNodeContents(b); getSelection().removeAllRanges(); getSelection().addRange(rg); }
   setTimeout(() => { b.textContent = mail; }, 1800);
