@@ -469,7 +469,7 @@ main { position: relative; z-index: 2; overflow-x: clip; padding-left: max(16px,
 .pj-c { position: relative; width: 100%; max-width: min(260px, 25svh); aspect-ratio: 1; border-radius: 50%; will-change: transform; }
 .pj-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--hair); background: radial-gradient(circle at 32% 26%, rgba(255,255,255,.07), rgba(255,255,255,.012) 62%); transition: border-color .5s; }
 .pj-t.on .pj-ring { border-color: transparent; }
-.pj-fill { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: var(--b); clip-path: circle(0% at var(--mx, 50%) var(--my, 50%)); transition: clip-path .75s cubic-bezier(.22, .8, .2, 1); }
+.pj-fill { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; isolation: isolate; -webkit-mask: radial-gradient(circle closest-side, #000 99%, transparent 100%); mask: radial-gradient(circle closest-side, #000 99%, transparent 100%); background: var(--b); clip-path: circle(0% at var(--mx, 50%) var(--my, 50%)); transition: clip-path .75s cubic-bezier(.22, .8, .2, 1); }
 .pj-fill img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: luminosity; opacity: .34; transform: scale(1.18); transition: transform 1.4s cubic-bezier(.22, .8, .2, 1); }
 .pj-t.on .pj-fill { clip-path: circle(72% at var(--mx, 50%) var(--my, 50%)); }
 .pj-t.on .pj-fill img { transform: scale(1); }
@@ -1026,14 +1026,15 @@ main > section[tabindex="-1"]:focus, .fo-sc:focus, .pm-sc:focus, .ci-sc:focus { 
 .cl { text-transform: none; color: var(--blanco); padding: 5px 8px; border: 1px solid color-mix(in srgb, var(--h) 55%, transparent); background: rgba(3,3,8,.8); }
 
 /* ---------- loader ---------- */
-.loader { position: fixed; inset: 0; z-index: 10; pointer-events: none; }
+/* misma caja que el lienzo de la bola (100lvh), para que las guías caigan justo sobre ella también en el móvil */
+.loader { position: fixed; left: 0; top: 0; width: 100%; height: 100vh; height: 100lvh; z-index: 10; pointer-events: none; }
 .loader svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .loader .ld-guides line { stroke: rgba(179,200,255,.14); stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: 1; }
 .loader .ld-o { fill: none; stroke: var(--blanco); stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: 1; }
 .loader .ld-h line { stroke: var(--h); stroke-width: 1; stroke-opacity: .8; }
 .loader .ld-h circle { fill: var(--cero); stroke: var(--h); stroke-width: 1; }
 .loader .ld-a rect { fill: var(--cero); stroke: var(--blanco); stroke-width: 1; }
-.ld-count { position: absolute; left: calc(max(16px, env(safe-area-inset-left, 0px)) + 6px); bottom: calc(24px + env(safe-area-inset-bottom, 0px)); font-family: var(--ui); font-size: 11px; font-weight: 500; letter-spacing: .14em; color: var(--niebla); font-variant-numeric: tabular-nums; }
+.ld-count { position: fixed; left: calc(max(16px, env(safe-area-inset-left, 0px)) + 6px); bottom: calc(24px + env(safe-area-inset-bottom, 0px)); font-family: var(--ui); font-size: 11px; font-weight: 500; letter-spacing: .14em; color: var(--niebla); font-variant-numeric: tabular-nums; }
 .ld-count b { font-weight: 500; color: var(--blanco); margin-left: 10px; }
 #labHero, #gHero, #gHeroDot { opacity: 0; }
 .no-gl .loader, .no-gl .gl-lab, .no-gl #gHero, .no-gl #gHeroDot, .no-gl .mode { display: none; }
@@ -1044,6 +1045,19 @@ main > section[tabindex="-1"]:focus, .fo-sc:focus, .pm-sc:focus, .ci-sc:focus { 
   .mode .m-a, .mode .m-b { padding: 0 10px; }
 }
 @media (prefers-reduced-motion: reduce) { .grain { animation: none; } }
+/* móvil y táctil: se ve igual, pero cada fotograma cuesta mucho menos de pintar */
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  /* el grano a pantalla completa se mezclaba con todo en cada fotograma */
+  .grain { display: none; }
+  /* el halo ya es un degradado suave: sin el desenfoque extra, que se recalculaba al moverse */
+  .halo { filter: none; }
+  /* el cristal no desenfoca lo que tiene detrás (la bola se mueve y obligaba a recalcularlo siempre): fondo del mismo tono */
+  .glass:not(.about-card) { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(10,11,20,.88); }
+  .about-card { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .hud-tl button, .mf-hint, .mf-snd { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .hud-tl button { background: rgba(3,3,8,.82); }
+  .mf-hint, .mf-snd { background: rgba(3,3,8,.86); }
+}
 </style>
 
 <!-- la marca: el 0 y su satélite -->
@@ -2378,7 +2392,8 @@ function updateProjects(sy, dt) {
     const sq = Math.abs(T.sv);
     T.el.style.translate = `0 ${(-T.py).toFixed(1)}px`;
     T.c.style.transform = `translate(${T.x.toFixed(1)}px, ${T.y.toFixed(1)}px) scale(${(1 - sq * 0.6).toFixed(3)}, ${(1 + sq).toFixed(3)})`;
-    T.lg.style.setProperty('--lx', `${(T.x * 0.7).toFixed(1)}px`); T.lg.style.setProperty('--ly', `${(T.y * 0.7).toFixed(1)}px`);
+    const lx = `${(T.x * 0.7).toFixed(1)}px`, ly = `${(T.y * 0.7).toFixed(1)}px`;
+    if (lx !== T.lx || ly !== T.ly) { T.lx = lx; T.ly = ly; T.lg.style.setProperty('--lx', lx); T.lg.style.setProperty('--ly', ly); }
     /* el satélite gira solo; al encender el círculo se va arriba a la derecha, como en la marca */
     const on = T.el.classList.contains('on');
     if (on) { const tgt = -Math.PI / 4; T.a += (tgt + Math.round((T.a - tgt) / (Math.PI * 2)) * Math.PI * 2 - T.a) * e * 0.8; }
@@ -2881,6 +2896,8 @@ function docBox(el) {
   const r = el.getBoundingClientRect();
   return { x: r.left + r.width / 2, y: r.top + scrollY + r.height / 2, w: r.width, h: r.height };
 }
+/* píxeles por punto del lienzo: nítido cuando la bola se ve; muy bajo cuando va desenfocada (en el móvil, aún menos) */
+const pxr = low => (low ? (mobile ? 0.35 : 0.6) : Math.min(devicePixelRatio, mobile ? 1.5 : 2));
 function centerR() { return mobile ? Math.min(vw * 0.33, vh * 0.24) : Math.min(vw, vh) * 0.28; }
 function measure() {
   // el canvas fijo ocupa el viewport sin la barra de scroll: medir lo mismo que él
@@ -2936,7 +2953,7 @@ function measure() {
   M.offA = Math.max(1.05, ol); M.offU = [ox / ol, oy / ol];
   root.style.setProperty('--sd', `${Math.round(centerR() * 2.14 + (mobile ? 28 : 64))}px`);
   if (renderer) {
-    renderer.setPixelRatio(S.lowRes ? 0.6 : Math.min(devicePixelRatio, mobile ? 1.5 : 2));
+    renderer.setPixelRatio(pxr(S.lowRes));
     renderer.setSize(cw, ch, false);
     PU.uPx.value = renderer.getPixelRatio();
     S.lastR = 0;
@@ -3076,12 +3093,12 @@ function frame(now) {
   if (Math.abs(bl - S.blurShown) > 0.003 || Math.abs(dO - S.dkO) > 0.003) {
     S.blurShown = bl; S.dkO = dO;
     /* detrás del contenido, además, menos saturado: el 0 no tiñe los colores de las marcas */
-    canvas.style.filter = bl > 0.01 ? `blur(${(bl * (mobile ? 20 : 34)).toFixed(1)}px) saturate(${(1 - bl * (1 - dS)).toFixed(2)})` : '';
+    canvas.style.filter = bl > 0.01 ? `blur(${(bl * (mobile ? 12 : 34)).toFixed(1)}px) saturate(${(1 - bl * (1 - dS)).toFixed(2)})` : '';
     canvas.style.opacity = (1 - bl * (1 - dO)).toFixed(3);
     const low = S.lowRes ? bl > 0.5 : bl > 0.7;
     if (renderer && low !== S.lowRes) {
       S.lowRes = low;
-      renderer.setPixelRatio(low ? 0.6 : Math.min(devicePixelRatio, mobile ? 1.5 : 2));
+      renderer.setPixelRatio(pxr(low));
       renderer.setSize(cw, ch, false);
       PU.uPx.value = renderer.getPixelRatio();
       S.lastR = 0;
@@ -3221,7 +3238,7 @@ function frame(now) {
   U.uSeam.value = seam;
 
   /* el filo del cristal apunta al punto */
-  for (const q of M.glass) {
+  if (!mobile && !noHover) for (const q of M.glass) {
     const gy = q.y - (q.fixed ? 0 : sy);
     if (gy < -400 || gy > vh + 400) continue;
     q.g.style.setProperty('--ang', `${(Math.atan2(D.y - gy, D.x - q.x) * 180 / Math.PI + 90).toFixed(1)}deg`);
@@ -3276,7 +3293,7 @@ function frame(now) {
   }
 
   /* con el 0 desenfocado detrás del contenido basta con unos 30 fps */
-  if (renderer && (bl < 0.95 || now - S.lastR > 33)) { S.lastR = now; renderer.render(scene, camera); }
+  if (renderer && (bl < (mobile ? 0.5 : 0.95) || now - S.lastR > 33)) { S.lastR = now; renderer.render(scene, camera); }
   requestAnimationFrame(frame);
 }
 
