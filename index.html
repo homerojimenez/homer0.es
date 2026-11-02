@@ -7,12 +7,16 @@
 <meta name="description" content="Homero Jiménez Cabrera. Diseño marcas y construyo los sistemas con IA que las hacen crecer.">
 <meta name="theme-color" content="#030308">
 <link rel="canonical" href="https://homer0.es/">
+<link rel="alternate" hreflang="es" href="https://homer0.es/">
+<link rel="alternate" hreflang="en" href="https://homer0.es/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://homer0.es/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://homer0.es/">
 <meta property="og:title" content="homer0.es · Homero Jiménez Cabrera">
 <meta property="og:description" content="Homero Jiménez Cabrera. Diseño marcas y construyo los sistemas con IA que las hacen crecer.">
 <meta property="og:image" content="https://homer0.es/assets/perfil/homero.jpg">
 <meta name="twitter:card" content="summary">
+<script src="assets/i18n.js"></script>
 </head>
 <body>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3CradialGradient id='g' cx='34%25' cy='28%25' r='78%25'%3E%3Cstop offset='0' stop-color='%23fff'/%3E%3Cstop offset='.12' stop-color='%23d6dcff'/%3E%3Cstop offset='.5' stop-color='%234F5BFF'/%3E%3Cstop offset='.82' stop-color='%23C26BFF'/%3E%3Cstop offset='1' stop-color='%230D0E16'/%3E%3C/radialGradient%3E%3Ccircle cx='28' cy='36' r='22' fill='url(%23g)'/%3E%3Ccircle cx='54.5' cy='11.5' r='5.5' fill='%23F4F5FA'/%3E%3C/svg%3E">
@@ -435,6 +439,7 @@ main { position: relative; z-index: 2; overflow-x: clip; padding-left: max(16px,
 .ui-ads i:nth-child(3) { background: linear-gradient(160deg, rgba(255,77,109,.12), rgba(79,91,255,.03)); }
 /* anuncio de texto abstracto: etiqueta y titular; nunca piezas reales de terceros */
 .ui-ads i::before { content: "Publicidad"; font: 500 9px var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--niebla); }
+:lang(en) .ui-ads i::before { content: "Sponsored"; }
 .ui-ads b { align-self: end; font: 600 15px/1.15 var(--display); letter-spacing: -.01em; color: var(--blanco); }
 .ui-ads i.on { opacity: 1; }
 .ui-ads i.hit { border-color: var(--h); box-shadow: 0 0 0 1px var(--h), 0 0 14px rgba(179,200,255,.35); transition: opacity .3s, transform .3s, box-shadow .4s, border-color .4s; }
@@ -981,6 +986,16 @@ html.pm-on { overflow: hidden; }
 @media (hover: hover) and (pointer: fine) { .hud-tl button:hover { transform: rotate(-30deg); } }
 .hud-tl svg { display: block; }
 .hud-tr { top: calc(20px + env(safe-area-inset-top, 0px)); right: calc(max(16px, env(safe-area-inset-right, 0px)) + 6px); display: grid; justify-items: end; gap: 10px; }
+/* idioma: ES · EN arriba a la derecha; el activo en blanco */
+.hud-tr .lang { pointer-events: auto; display: inline-flex; align-items: center; min-height: 32px; margin: -9px -8px -9px 0; padding: 0 2px; border: 0; border-radius: 999px; background: none; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--niebla); cursor: pointer; transition: opacity .6s ease, transform .45s cubic-bezier(.2, .7, .2, 1); }
+.lang span { padding: 4px 8px; transition: color .3s; }
+.lang span + span { position: relative; }
+.lang span + span::before { content: ""; position: absolute; left: -1px; top: 50%; width: 2px; height: 2px; margin-top: -1px; border-radius: 50%; background: currentColor; opacity: .6; }
+html[lang="es"] .lang .l-es, html[lang="en"] .lang .l-en { color: var(--blanco); }
+.sistema .lang { color: var(--h); }
+@media (hover: hover) and (pointer: fine) { .lang:hover span { color: var(--blanco); } }
+.lang:focus-visible { outline: 1px solid var(--h); outline-offset: 2px; }
+.ready.under .hud-tr .lang:not(:focus-visible) { opacity: 0; pointer-events: none; transform: translateY(-12px); transition-duration: .3s; }
 .hud-bl { bottom: calc(24px + env(safe-area-inset-bottom, 0px)); left: calc(max(16px, env(safe-area-inset-left, 0px)) + 6px); display: grid; gap: 4px; }
 .hud-bl .v { color: var(--blanco); }
 .sys-only { opacity: 0; transition: opacity .6s ease; }
@@ -1106,7 +1121,7 @@ main > section[tabindex="-1"]:focus, .fo-sc:focus, .pm-sc:focus, .ci-sc:focus { 
 <main>
   <section class="hero" id="hero">
     <h1 class="wm" id="wm" aria-label="homer cero punto es">
-      <span class="wm-h" aria-hidden="true"><span class="ch">h</span><span class="ch">o</span><span class="ch">m</span><span class="ch">e</span><span class="ch">r</span></span><span class="wm-0" id="slot" aria-hidden="true"><span class="ring0" id="ring0"></span><svg class="slot-sys sys-only" viewBox="0 0 100 100"><line x1="-60" y1="100" x2="160" y2="100"/><line x1="50" y1="-30" x2="50" y2="130"/><circle cx="50" cy="50" r="50"/><rect x="46" y="-4" width="8" height="8"/><rect x="96" y="46" width="8" height="8"/><rect x="46" y="96" width="8" height="8"/><rect x="-4" y="46" width="8" height="8"/></svg></span><span class="wm-es" aria-hidden="true"><span class="sat-w"><span class="ghost" id="ghost"></span><span class="sat" id="dot"></span></span><span class="es-t" id="esT">es</span></span>
+      <span class="wm-h" aria-hidden="true" translate="no"><span class="ch">h</span><span class="ch">o</span><span class="ch">m</span><span class="ch">e</span><span class="ch">r</span></span><span class="wm-0" id="slot" aria-hidden="true"><span class="ring0" id="ring0"></span><svg class="slot-sys sys-only" viewBox="0 0 100 100"><line x1="-60" y1="100" x2="160" y2="100"/><line x1="50" y1="-30" x2="50" y2="130"/><circle cx="50" cy="50" r="50"/><rect x="46" y="-4" width="8" height="8"/><rect x="96" y="46" width="8" height="8"/><rect x="46" y="96" width="8" height="8"/><rect x="-4" y="46" width="8" height="8"/></svg></span><span class="wm-es" aria-hidden="true"><span class="sat-w"><span class="ghost" id="ghost"></span><span class="sat" id="dot"></span></span><span class="es-t" translate="no" id="esT">es</span></span>
     </h1>
   </section>
 
@@ -1184,15 +1199,16 @@ main > section[tabindex="-1"]:focus, .fo-sc:focus, .pm-sc:focus, .ci-sc:focus { 
     </div>
   </section>
   <section class="end" id="end">
-    <h2 class="wm" aria-label="homer cero punto es"><span class="wm-h" aria-hidden="true"><span class="ch">h</span><span class="ch">o</span><span class="ch">m</span><span class="ch">e</span><span class="ch">r</span></span><span class="wm-0" id="slotEnd" aria-hidden="true"><span class="ring0" id="ring0e"></span></span><span class="wm-es" aria-hidden="true"><span class="sat-w"><span class="ghost" id="ghostE"></span><span class="sat" id="dotEnd"></span></span><span class="es-t">es</span></span></h2>
+    <h2 class="wm" aria-label="homer cero punto es"><span class="wm-h" aria-hidden="true" translate="no"><span class="ch">h</span><span class="ch">o</span><span class="ch">m</span><span class="ch">e</span><span class="ch">r</span></span><span class="wm-0" id="slotEnd" aria-hidden="true"><span class="ring0" id="ring0e"></span></span><span class="wm-es" aria-hidden="true"><span class="sat-w"><span class="ghost" id="ghostE"></span><span class="sat" id="dotEnd"></span></span><span class="es-t" translate="no">es</span></span></h2>
     <p class="foot"><a href="mailto:hola@homer0.es">hola@homer0.es</a> · <a href="https://www.linkedin.com/in/homer0" target="_blank" rel="noopener">LinkedIn&nbsp;↗</a></p>
   </section>
 </main>
 
 <!-- HUD -->
 <div class="hud hud-tl"><button type="button" id="toTop" aria-label="homer0.es, volver al inicio"><svg width="28" height="28" aria-hidden="true"><use href="#mk"/></svg></button></div>
-<div class="hud hud-tr" aria-hidden="true">
-  <span id="clock">MAD --:--:--</span>
+<div class="hud hud-tr">
+  <button type="button" class="lang" id="lang" translate="no"><span class="l-es" lang="es">ES</span><span class="l-en" lang="en">EN</span></button>
+  <span id="clock" aria-hidden="true">MAD --:--:--</span>
 </div>
 <div class="hud hud-bl" aria-hidden="true">
   <span><span class="v" id="rdN">0.0</span> · <span id="rdT">Cromo</span></span>
@@ -1218,6 +1234,14 @@ main > section[tabindex="-1"]:focus, .fo-sc:focus, .pm-sc:focus, .ci-sc:focus { 
 <script src="assets/dims.js"></script>
 <script src="assets/projects.js"></script>
 <script src="assets/creatives.js"></script>
+<script src="assets/en.js"></script>
+<script src="assets/projects.en.js"></script>
+<script src="assets/creatives.en.js"></script>
+<script>
+  /* idioma: el HTML fijo se traduce antes de que la web lo lea; el botón cambia y recuerda el idioma */
+  H0I18N.arrancar();
+  (function () { const b = document.getElementById('lang'); if (!b) return; b.setAttribute('aria-label', H0I18N.EN ? 'Ver la web en español' : 'Read this site in English'); b.addEventListener('click', H0I18N.cambiar); })();
+</script>
 <script type="importmap">
   { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" } }
 </script>
@@ -1231,7 +1255,10 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, t) => a + (b - a) * t;
 const sstep = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
-const es = (x, d = 2) => x.toFixed(d).replace('.', ',');
+const { EN, t, tf, trHTML, trObj } = window.H0I18N;
+/* cifras: coma decimal y punto de miles en español; al revés en inglés */
+const es = (x, d = 2) => (EN ? x.toFixed(d) : x.toFixed(d).replace('.', ','));
+const miles = v => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, EN ? ',' : '.');
 
 /* ------------------------------------------------------------------ */
 /* El 0 y sus estados: material, luz y halo propios                    */
@@ -1254,6 +1281,7 @@ const STATES = [
   { n: '0.7', t: 'Tierra',    spec: ['MATERIAL · PLANETA', 'SOL · EL CRITERIO', 'MADRID 40,4° N'],
     tint: [0.8, 0.85, 1.0], rot: 0.2, key: [-0.5, 0.6, 0.6], spin: 0.06, glow: 0.75, halo: ['#4F5BFF', '#B3C8FF'] },
 ];
+STATES.forEach(s => { s.t = t(s.t); s.spec = s.spec.map(x => t(x)); });
 /* continentes aproximados como manchas sobre la esfera: [latitud, longitud, radio en grados] */
 const BLOBS = [
   [62, -112, 17], [52, -98, 14], [42, -100, 13], [36, -86, 9], [45, -73, 6], [28, -103, 7], [20, -100, 5], [16, -92, 4],
@@ -1962,6 +1990,7 @@ const FLOWS = [
     ],
   },
 ];
+trObj(FLOWS, ['id', 'n', 'ic', 'ui', 'path', 'human']);
 /* etiquetas en mayúsculas: cada tramo entre « · » va entero (si es corto) y el punto se queda al final del tramo anterior */
 const tramos = s => `<span>${s.split(' · ').map((x, i, a) => `<span${x.length > 24 ? '' : ' class="nw"'}>${x}${i < a.length - 1 ? '&nbsp;·' : ''}</span>`).join(' ')}</span>`;
 /* las variaciones que salen del motor: las piezas de la campaña de la Estación VR */
@@ -2030,6 +2059,8 @@ const UI = {
     <svg class="ui-spark down" viewBox="0 0 200 36" preserveAspectRatio="none"><path pathLength="1" data-draw data-r="0.04,0.5" d="M0 6 L20 7 L40 9 L60 12 L80 13 L100 17 L120 21 L140 24 L160 26 L180 30 L200 32"/></svg>
     <div class="ui-team" data-on="0.55"><span class="ui-av">EC</span><div><b>Aviso al equipo creativo</b><div class="ui-mute">Redefinir el ángulo o el perfil de cliente</div></div><i class="crit"></i></div>`,
 };
+/* las maquetas se traducen antes de pintarlas: el código anima sus textos nada más insertarlas */
+for (const k in UI) UI[k] = trHTML(UI[k]);
 
 const icSvg = k => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${IC[k]}"/></svg>`;
 /* la cadena de un paso: solo sus herramientas, en fila, y el punto recorriéndolas */
@@ -2043,13 +2074,13 @@ function chainSvg(f, path) {
   }).join('');
   return `<svg class="fc-chain" viewBox="0 0 ${W} 84" style="width:min(${Math.round(W * 1.1)}px, ${(W / Wmax * 100).toFixed(2)}%)" role="img" aria-label="${path.map(id => f.nodes[id].l).join(', ')}">${line}${nodes}<circle class="pk" r="5" cx="${xs[0]}" cy="${cy}"/></svg>`;
 }
-const fmtN = { eur: v => `${String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.')} €`, int: v => String(Math.round(v)) };
+const fmtN = { eur: v => (EN ? `€${miles(v)}` : `${miles(v)} €`), int: v => String(Math.round(v)) };
 const BINDSEL = '[data-type],[data-count],[data-w],[data-lw],[data-on],[data-off],[data-press],[data-draw],[data-ticker],[data-seq],[data-cls],[data-reveal]';
 /* el menú: una tarjeta por automatización, con lo justo para saber de qué va */
 function buildFlows() {
   const host = $('#flows');
   host.innerHTML = `<div class="fx-in"><div class="fx-grid">${FLOWS.map((f, i) => {
-    return `<button type="button" class="fx-c glass" data-i="${i}" aria-label="${f.title}. Ver cómo funciona">
+    return `<button type="button" class="fx-c glass" data-i="${i}" aria-label="${tf('{t}. Ver cómo funciona', { t: f.title })}">
       <span class="fx-k"><i>${f.n}</i>${tramos(f.kicker)}</span>
       <span class="fx-t">${f.title}</span>
       <span class="fx-p">${f.problem}</span>
@@ -2109,7 +2140,7 @@ function fillFlow(i) {
       <div class="fc-pane"><div class="fc-parts">${parts}</div></div>
       ${f.steps.map(st => `<div class="fc-pane"><div class="fc-card"><div class="ui on">${UI[st.ui]}</div></div></div>`).join('')}
     </div></div>`;
-  $('.fo-dots', el).innerHTML = `<button type="button" class="fo-d sum" data-p="0" aria-label="Resumen"></button>${f.steps.map((st, j) => `<button type="button" class="fo-d" data-p="${j + 1}" aria-label="Paso ${j + 1}: ${st.t}"></button>`).join('')}`;
+  $('.fo-dots', el).innerHTML = `<button type="button" class="fo-d sum" data-p="0" aria-label="Resumen"></button>${f.steps.map((st, j) => `<button type="button" class="fo-d" data-p="${j + 1}" aria-label="${tf('Paso {n}: {t}', { n: j + 1, t: st.t })}"></button>`).join('')}`;
   const L = $$('.fc-l > .fc-pane', el), R = $$('.fc-r > .fc-pane', el);
   FO.cur = {
     L, R, dots: $$('.fo-d', el),
@@ -2132,11 +2163,11 @@ function setPhase(ph) {
   FO.ph = ph;
   for (const list of [L, R]) list.forEach((pn, i) => { pn.classList.toggle('on', i === ph); pn.classList.toggle('past', i < ph); pn.inert = i !== ph; });
   dots.forEach((d, i) => { d.classList.toggle('on', i === ph); d.classList.toggle('done', i < ph); d.setAttribute('aria-current', i === ph ? 'step' : 'false'); });
-  $('.fo-lb', el).textContent = ph ? `Paso ${ph} de ${FO.n}` : 'Resumen';
+  $('.fo-lb', el).textContent = ph ? tf('Paso {a} de {b}', { a: ph, b: FO.n }) : t('Resumen');
   const f = FLOWS[FO.i];
-  $('.fo-nav .vh', el).textContent = ph ? `Paso ${ph} de ${FO.n}. ${f.steps[ph - 1].t}` : `${f.title}. Resumen`;
+  $('.fo-nav .vh', el).textContent = ph ? tf('Paso {a} de {b}. {t}', { a: ph, b: FO.n, t: f.steps[ph - 1].t }) : tf('{t}. Resumen', { t: f.title });
   $('.ci-nav.prev', el).disabled = ph === 0;
-  next.setAttribute('aria-label', ph < FO.n ? (ph ? 'Paso siguiente' : 'Empezar') : 'Siguiente automatización');
+  next.setAttribute('aria-label', ph < FO.n ? (ph ? t('Paso siguiente') : t('Empezar')) : t('Siguiente automatización'));
   next.classList.remove('pulse');
   if (FO.tw) FO.tw.kill();
   if (!ph) { if (!reduce) next.classList.add('pulse'); return; }
@@ -2285,8 +2316,8 @@ const PT = [];
 const PV = { v: 0, lastSy: 0, idleT: 4, focus: -1 };
 function buildProjects() {
   const host = $('#projects');
-  host.innerHTML = `<div class="pj-h"><span class="tag">07 proyectos</span></div>
-    <div class="pj-grid">${PJ.map((P, i) => `<button type="button" class="pj-t" data-i="${i}" style="--b:${P.b}; --lw:${P.lw}" aria-label="${P.name}, ${P.kind}. Abrir proyecto">
+  host.innerHTML = `<div class="pj-h"><span class="tag">${tf('{n} proyectos', { n: String(PJ.length).padStart(2, '0') })}</span></div>
+    <div class="pj-grid">${PJ.map((P, i) => `<button type="button" class="pj-t" data-i="${i}" style="--b:${P.b}; --lw:${P.lw}" aria-label="${tf('{n}, {k}. Abrir proyecto', { n: P.name, k: P.kind })}">
       <span class="pj-c"><span class="pj-ring"></span><span class="pj-fill" style="${P.bg ? `background:${P.bg}` : ''}">${P.cover ? `<img src="${A + P.cover}" alt="" loading="lazy" decoding="async">` : ''}</span>${logoSvg(P.id, 'pj-lg')}<i class="pj-sat"></i></span>
       <span class="pj-n">${P.name}</span><span class="pj-k">${P.kind}</span></button>`).join('')}</div>`;
   $$('.pj-t', host).forEach((el, i) => {
@@ -2428,7 +2459,7 @@ function mediaHTML(m) {
   const wide = m.wide ? ' w' : '';
   const snd = m.kind === 'spot' || m.audio ? `<button type="button" class="mf-snd" aria-pressed="false"><i>${SND}</i><span>Escuchar</span></button>` : '';
   switch (m.kind) {
-    case 'web': return `<figure class="mf mf-web${wide}"><div class="mf-in"><div class="mf-bar"><i></i><i></i><i></i>${m.url ? `<span>${m.url}</span>` : ''}</div><div class="mf-vp" tabindex="0" role="region" aria-label="Web de ${m.url || 'muestra'}: desliza para recorrerla">${m.live ? WEB[m.live]() : srcTag(m)}</div><span class="mf-hint">Desliza dentro</span></div>${cap}</figure>`;
+    case 'web': return `<figure class="mf mf-web${wide}"><div class="mf-in"><div class="mf-bar"><i></i><i></i><i></i>${m.url ? `<span>${m.url}</span>` : ''}</div><div class="mf-vp" tabindex="0" role="region" translate="no" aria-label="${tf('Web de {u}: desliza para recorrerla', { u: m.url || t('muestra') })}">${m.live ? WEB[m.live]() : srcTag(m)}</div><span class="mf-hint">Desliza dentro</span></div>${cap}</figure>`;
     case 'laptop': return `<figure class="mf mf-laptop${wide}"><div class="mf-in"><div class="mf-scr">${srcTag(m)}</div><div class="mf-base"></div></div>${cap}</figure>`;
     case 'phone': return `<figure class="mf mf-phone${wide}${m.sb ? ' sb' : ''}"${typeof m.sb === 'string' ? ` style="--sbc:${m.sb}"` : ''}><div class="mf-in">${srcTag(m)}${snd}</div>${cap}</figure>`;
     case 'totem': return `<figure class="mf mf-totem${wide}"><div class="mf-in"><div class="mf-tb">${srcTag(m)}${snd}</div><span class="mf-pole" aria-hidden="true"></span></div>${cap}</figure>`;
@@ -2454,12 +2485,12 @@ function buildModal() {
     if (sw) {
       const hex = sw.dataset.hex;
       (navigator.clipboard ? navigator.clipboard.writeText(hex) : Promise.reject()).then(() => {
-        sw.classList.add('ok'); $('span', sw).textContent = 'Copiado'; $('#live').textContent = `${hex} copiado`;
+        sw.classList.add('ok'); $('span', sw).textContent = t('Copiado'); $('#live').textContent = tf('{h} copiado', { h: hex });
         setTimeout(() => { sw.classList.remove('ok'); $('span', sw).textContent = hex; }, 1200);
       }, () => {
         /* sin portapapeles (por ejemplo, dentro de un iframe sin permiso): el código queda seleccionado para copiarlo a mano */
         const rg = document.createRange(); rg.selectNodeContents($('span', sw)); getSelection().removeAllRanges(); getSelection().addRange(rg);
-        $('#live').textContent = `${hex} seleccionado`;
+        $('#live').textContent = tf('{h} seleccionado', { h: hex });
       });
       return;
     }
@@ -2511,7 +2542,7 @@ function toggleSound(sb, v, force, scope = PM.el) {
   } else { v.muted = true; if (reduce) v.pause(); }
   sb.classList.toggle('live', on);
   sb.setAttribute('aria-pressed', String(on));
-  $('span', sb).textContent = on ? 'Sonando' : 'Escuchar';
+  $('span', sb).textContent = on ? t('Sonando') : t('Escuchar');
 }
 function fillModal(i) {
   const P = PJ[i], N = PJ[(i + 1) % PJ.length], el = PM.el;
@@ -2519,7 +2550,7 @@ function fillModal(i) {
   el.style.setProperty('--b', P.b);
   el.style.setProperty('--bg', P.bg || P.b);
   $('.pm-i', el).textContent = `${String(i + 1).padStart(2, '0')} / ${String(PJ.length).padStart(2, '0')}`;
-  const meta = [['Año', P.year], ['Cliente', P.client], ['Qué hice', P.role]].filter(x => x[1]);
+  const meta = [[t('Año'), P.year], [t('Cliente'), P.client], [t('Qué hice'), P.role]].filter(x => x[1]);
   const body = $('.pm-body', el);
   if (PM.io) $$('.mf, .pm-idea', body).forEach(f => PM.io.unobserve(f));
   body.innerHTML = `<header class="pm-hero">
@@ -2529,24 +2560,24 @@ function fillModal(i) {
       ${meta.length ? `<dl class="pm-meta">${meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>` : ''}
       <div class="pm-tags">${P.tags.map(t => `<span>${t}</span>`).join('')}</div>
     </header>
-    <section class="pm-ch"><div class="pm-cap"><h4 class="pm-n"><i>1</i>El reto</h4></div><p class="pm-big">${P.reto}</p></section>
-    <section class="pm-ch pm-idea"><div class="pm-cap"><h4 class="pm-n"><i>2</i>La idea</h4></div>
+    <section class="pm-ch"><div class="pm-cap"><h4 class="pm-n"><i>1</i>${t('El reto')}</h4></div><p class="pm-big">${P.reto}</p></section>
+    <section class="pm-ch pm-idea"><div class="pm-cap"><h4 class="pm-n"><i>2</i>${t('La idea')}</h4></div>
       <div><p class="pm-big">${P.idea}</p>
         <div class="pm-board">
           <div class="pm-mark" style="--lw:${P.blw || P.lw}">${logoSvg(P.id)}</div>
-          ${P.pal.length ? `<div class="pm-pal"><span class="pm-n">Paleta</span><div class="pm-sws" data-n="${P.pal.length}" style="--n:${P.pal.length}">${P.pal.map(([c, n]) => `<button type="button" class="pm-sw" style="--c:${c}" data-hex="${c}" title="${n} · copiar"><i></i><span>${c}</span></button>`).join('')}</div></div>` : ''}
-          ${P.type.length ? `<div class="pm-type"><span class="pm-n">Tipografía</span>${P.type.map(([f, role]) => `<div class="pm-ty"><b>${f}</b><em>${role}</em></div>`).join('')}</div>` : ''}
+          ${P.pal.length ? `<div class="pm-pal"><span class="pm-n">${t('Paleta')}</span><div class="pm-sws" data-n="${P.pal.length}" style="--n:${P.pal.length}">${P.pal.map(([c, n]) => `<button type="button" class="pm-sw" style="--c:${c}" data-hex="${c}" title="${tf('{n} · copiar', { n })}"><i></i><span>${c}</span></button>`).join('')}</div></div>` : ''}
+          ${P.type.length ? `<div class="pm-type"><span class="pm-n">${t('Tipografía')}</span>${P.type.map(([f, role]) => `<div class="pm-ty"><b>${f}</b><em>${role}</em></div>`).join('')}</div>` : ''}
         </div></div></section>
     ${P.chapters.map((c, j) => `<section class="pm-ch"><div class="pm-cap"><h4 class="pm-n"><i>${j + 3}</i>${c.title}</h4>${c.text ? `<p>${c.text}</p>` : ''}</div><div class="pm-media">${c.media.map(mediaHTML).join('')}</div></section>`).join('')}`;
   $$('.mf, .pm-idea', body).forEach(f => { if (reduce) f.classList.add('in'); PM.io.observe(f); });
-  const tt = ['El reto', 'La idea', ...P.chapters.map(c => c.title)];
+  const tt = [t('El reto'), t('La idea'), ...P.chapters.map(c => c.title)];
   $('.pm-toc', el).innerHTML = tt.map((t, j) => `<button type="button" data-j="${j}" title="${t}" aria-label="${j + 1}. ${t}"><span>${j + 1}</span></button>`).join('');
   PM.toc.disconnect(); [$('.pm-hero', body), ...$$('.pm-ch', body)].forEach(s => PM.toc.observe(s));
   /* proporción de cada pieza, para centrar sin agrandarla la que queda suelta en media columna */
   $$('.pm-media > .mf', body).forEach(f => { const m = $('img, video', f); if (m && m.getAttribute('height')) f.style.setProperty('--ar', m.getAttribute('width') / m.getAttribute('height')); });
   const nx = $('.pm-nx', el);
   nx.style.setProperty('--nb', N.b); nx.style.setProperty('--nbg', N.bg || N.b); nx.style.setProperty('--lw', N.lw);
-  nx.innerHTML = `<i>${logoSvg(N.id)}</i>${N.name}<span>Siguiente</span>`;
+  nx.innerHTML = `<i>${logoSvg(N.id)}</i>${N.name}<span>${t('Siguiente')}</span>`;
 }
 function openProject(i, from) {
   if (!window.gsap) return;
@@ -2594,7 +2625,7 @@ function switchProject(i) {
     onComplete: () => {
       PM.from = PT[i] ? PT[i].el : null;
       fillModal(i); sc.scrollTop = 0;
-      $('#live').textContent = `${PJ[i].name}, proyecto ${i + 1} de ${PJ.length}`;
+      $('#live').textContent = tf('{n}, proyecto {a} de {b}', { n: PJ[i].name, a: i + 1, b: PJ.length });
       gsap.fromTo([inner, nx], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: reduce ? 0.01 : 0.6, ease: 'power3.out', clearProps: 'opacity,transform' });
       playMotion(PJ[i], $('.pm-lw svg', el));
       $('.pm-x', el).focus({ preventScroll: true });
@@ -2615,7 +2646,7 @@ function closeProject() {
   /* si aún se estaba abriendo, se encoge desde donde va */
   if (!gsap.getTweensOf(PM).length) PM.rr = Math.hypot(Math.max(ox, vw - ox), Math.max(oy, vh - oy)) + 20;
   $$('video', el).forEach(v => { v.pause(); v.muted = true; });
-  $$('.mf-snd.live', el).forEach(sb => { sb.classList.remove('live'); sb.setAttribute('aria-pressed', 'false'); $('span', sb).textContent = 'Escuchar'; });
+  $$('.mf-snd.live', el).forEach(sb => { sb.classList.remove('live'); sb.setAttribute('aria-pressed', 'false'); $('span', sb).textContent = t('Escuchar'); });
   gsap.killTweensOf(PM);
   /* la página se suelta al empezar a cerrar */
   PM.open = false; $('.pm-sc', el).inert = true;
@@ -2655,15 +2686,15 @@ buildProjects();
 /* colores validados contra el fondo oscuro (luminosidad, croma y daltonismo); el color sigue a la campaña */
 const ccol = c => /mystery/i.test(c.name) ? '#B98A2E' : /kerygma/i.test(c.name) ? '#CF5BC9' : '#C1E749';
 const CAMPS = window.CREATIVES || [];
-const fInt = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const fInt = n => miles(n);
 /* espacio de no separación antes de € y %: la cifra nunca se queda sin su unidad */
-const fEur = (v, d = 2) => `${es(v, d)} €`;
-const fPct = (v, d = 1) => `${es(v, d)} %`;
+const fEur = (v, d = 2) => (EN ? `€${es(v, d)}` : `${es(v, d)} €`);
+const fPct = (v, d = 1) => (EN ? `${es(v, d)}%` : `${es(v, d)} %`);
 /* porcentajes de la curva: enteros sin decimales y, si no, uno */
 const fPc = v => fPct(v, Number.isInteger(v) ? 0 : 1);
 const fCpc = v => fEur(v, v < 0.1 ? 3 : 2);
-const resLbl = (n, l) => (n === 1 ? ({ leads: 'lead', 'compras de entrada': 'compra de entrada', 'compras de catálogo': 'compra de catálogo', 'reservas de grupo': 'reserva de grupo' })[l] || l : l);
-const costeDe = l => ({ 'compras de entrada': 'coste por compra', 'compras de catálogo': 'coste por catálogo vendido', 'reservas de grupo': 'coste por reserva', leads: 'coste por lead' })[l] || 'coste por resultado';
+const resLbl = (n, l) => t(n === 1 ? ({ leads: 'lead', 'compras de entrada': 'compra de entrada', 'compras de catálogo': 'compra de catálogo', 'reservas de grupo': 'reserva de grupo' })[l] || l : l);
+const costeDe = l => t(({ 'compras de entrada': 'coste por compra', 'compras de catálogo': 'coste por catálogo vendido', 'reservas de grupo': 'coste por reserva', leads: 'coste por lead' })[l] || 'coste por resultado');
 const arOf = f => ({ '9:16': '9 / 16', '4:5': '4 / 5', '1:1': '1 / 1', '16:9': '16 / 9' }[f] || '4 / 5');
 const thumbOf = k => k.poster || (k.media === 'video' ? k.src.replace(/\.(mp4|webm)$/, '-poster.jpg') : k.src);
 
@@ -2685,7 +2716,7 @@ function buildCreatives() {
       <div><h3 id="cg-${ci}"><i aria-hidden="true"></i>${c.name}</h3><p>${c.summary}</p></div>
       <div class="cg-k">${c.kpis.map(k => `<div><b>${k.value}</b><span>${k.label}</span></div>`).join('')}</div>
     </header>
-    <div class="cg-row">${c.creatives.map((k, ki) => `<button type="button" class="ct" data-c="${ci}" data-k="${ki}" style="--ar:${arOf(k.format)}" aria-label="${/[.?!…]$/.test(k.title) ? k.title : `${k.title}.`} CTR ${fPct(k.metrics.ctr)}. Ver sus datos">
+    <div class="cg-row">${c.creatives.map((k, ki) => `<button type="button" class="ct" data-c="${ci}" data-k="${ki}" style="--ar:${arOf(k.format)}" aria-label="${tf('{t} CTR {c}. Ver sus datos', { t: /[.?!…]$/.test(k.title) ? k.title : `${k.title}.`, c: fPct(k.metrics.ctr) })}">
       <span class="ct-f"><img src="${A + thumbOf(k)}" alt="" loading="lazy" decoding="async"></span>
       <span class="ct-m">${k.media === 'video' ? '<i class="ct-v" aria-hidden="true"></i>' : ''}<b>${fPct(k.metrics.ctr)}</b><small>CTR</small></span></button>`).join('')}</div>
   </section>`).join('');
@@ -2735,10 +2766,10 @@ function retSvg2(r) {
   const ticks = [];
   for (let s = 0; s <= n; s += n > 20 ? 10 : 5) ticks.push(s);
   const h3 = n >= 3;
-  return `<svg viewBox="0 0 ${W} ${H}" data-g="${L} ${Rr} ${T} ${B}" role="img" aria-label="Retención: ${h3 ? `a los 3 s sigue viendo el ${fPc(r[3])}; al final, el ${fPc(r[n])}` : `al final sigue viendo el ${fPc(r[n])}`}">
+  return `<svg viewBox="0 0 ${W} ${H}" data-g="${L} ${Rr} ${T} ${B}" role="img" aria-label="${h3 ? tf('Retención: a los 3 s sigue viendo el {a}; al final, el {b}', { a: fPc(r[3]), b: fPc(r[n]) }) : tf('Retención: al final sigue viendo el {b}', { b: fPc(r[n]) })}">
     <g class="ax">${[0, 50, 100].map(v => `<line x1="${L}" x2="${Rr}" y1="${sy(v)}" y2="${sy(v)}"/>${v ? `<text x="${L - 8}" y="${sy(v)}" dy=".35em" text-anchor="end">${v}</text>` : ''}`).join('')}${ticks.map(s => `<text x="${sx(s)}" y="${B}" dy="1.4em" text-anchor="middle">${s} s</text>`).join('')}</g>
     <path class="ar" d="${line}L${sx(n)} ${B}L${L} ${B}Z"/><path class="ln" d="${line}"/>
-    ${h3 ? `<circle class="p3" cx="${sx(3).toFixed(1)}" cy="${sy(r[3]).toFixed(1)}" r="6"/><text class="vl" x="${(sx(3) + 12).toFixed(1)}" y="${sy(r[3]).toFixed(1)}" dy="-.6em">${fPc(r[3])} a los 3 s</text>` : ''}
+    ${h3 ? `<circle class="p3" cx="${sx(3).toFixed(1)}" cy="${sy(r[3]).toFixed(1)}" r="6"/><text class="vl" x="${(sx(3) + 12).toFixed(1)}" y="${sy(r[3]).toFixed(1)}" dy="-.6em">${tf('{p} a los 3 s', { p: fPc(r[3]) })}</text>` : ''}
     <text class="vl" x="${Rr}" y="${sy(r[n]).toFixed(1)}" dy="-.6em" text-anchor="end">${fPc(r[n])}</text>
     <line class="xh" y1="${T}" y2="${B}"/><circle class="dt" r="5"/><rect class="hit" x="${L}" y="${T}" width="${Rr - L}" height="${B - T}"/></svg>`;
 }
@@ -2759,7 +2790,7 @@ function fillInsight() {
   const ret = k.video && k.video.retention;
   /* una sola línea de apoyo; la frecuencia solo cuando es alta (cuenta el desgaste), si no el CPM */
   const fr = m.frecuencia;
-  const sub = [`${fInt(m.gasto)}\u00a0€ de gasto`, `${fInt(m.impresiones)} impresiones`, `CPC ${fCpc(m.cpc)}`, fr >= 3 ? `frecuencia ${es(fr, Math.round(fr * 100) % 10 ? 2 : 1)}` : `CPM ${fEur(m.cpm)}`];
+  const sub = [tf('{v}\u00a0€ de gasto', { v: fInt(m.gasto) }), tf('{v} impresiones', { v: fInt(m.impresiones) }), `CPC ${fCpc(m.cpc)}`, fr >= 3 ? tf('frecuencia {v}', { v: es(fr, Math.round(fr * 100) % 10 ? 2 : 1) }) : `CPM ${fEur(m.cpm)}`];
   $('.ci-in', el).innerHTML = `<div class="ci-media">${media}</div>
     <div class="ci-data">
       <h3 class="ci-t" id="ciT">${k.title}</h3>
@@ -2772,9 +2803,9 @@ function fillInsight() {
       </div>
       <p class="ci-sub">${sub.map(s => `<span>${s}</span>`).join('')}</p>
       <div class="ci-two${ret ? '' : ' ci-one'}">
-        ${ret ? `<div class="ci-g ci-ret"><h4>Audiencia segundo a segundo</h4>${retSvg2(ret)}</div>` : ''}
+        ${ret ? `<div class="ci-g ci-ret"><h4>${t('Audiencia segundo a segundo')}</h4>${retSvg2(ret)}</div>` : ''}
         <div class="ci-g ci-au">
-          <div><h4>Dónde se vio</h4><div class="ci-stack">${pl.map((p, i) => `<i style="flex:${p.share} 1 0; background:${tones[i]}"></i>`).join('')}</div>
+          <div><h4>${t('Dónde se vio')}</h4><div class="ci-stack">${pl.map((p, i) => `<i style="flex:${p.share} 1 0; background:${tones[i]}"></i>`).join('')}</div>
             <div class="ci-lg">${pl.map((p, i) => `<span><i style="background:${tones[i]}"></i>${p.name}<b>${fPct(p.share, 0)}</b></span>`).join('')}</div></div>
           <div><h4>Edad</h4><div class="ci-age">${k.ages.map(a => `<span>${a.range}</span><p><i style="--f:${(a.share / maxAge).toFixed(3)}"></i><b>${fPct(a.share, 0)}</b></p>`).join('')}</div></div>
         </div>
@@ -2795,7 +2826,7 @@ function fillInsight() {
       const X = L + (i / n) * (Rr - L), Y = B - (r[i] / 100) * (B - T);
       xh.setAttribute('x1', X); xh.setAttribute('x2', X); xh.classList.add('on');
       dt.setAttribute('cx', X); dt.setAttribute('cy', Y); dt.classList.add('on');
-      showTip(`<b>Segundo ${i}</b><span>Sigue viendo el ${fPc(r[i])}</span>`, box.left + (X / vb.width) * box.width, box.top + (Y / vb.height) * box.height);
+      showTip(`<b>${tf('Segundo {i}', { i })}</b><span>${tf('Sigue viendo el {p}', { p: fPc(r[i]) })}</span>`, box.left + (X / vb.width) * box.width, box.top + (Y / vb.height) * box.height);
     };
     hit.addEventListener('pointermove', move); hit.addEventListener('pointerdown', move);
     hit.addEventListener('pointerleave', () => { xh.classList.remove('on'); dt.classList.remove('on'); hideTip(); });
@@ -2837,7 +2868,7 @@ function stepInsight(d) {
       fillInsight();
       if (CI.open) {
         if (had || document.activeElement === document.body) $(d > 0 ? '.ci-nav.next' : '.ci-nav.prev', el).focus({ preventScroll: true });
-        $('#live').textContent = `${CAMPS[CI.c].creatives[CI.k].title.replace(/\.$/, '')}, ${CI.k + 1} de ${n}`;
+        $('#live').textContent = tf('{t}, {a} de {b}', { t: CAMPS[CI.c].creatives[CI.k].title.replace(/\.$/, ''), a: CI.k + 1, b: n });
       }
       gsap.fromTo($('.ci-in', el), { opacity: 0, x: 24 * d }, { opacity: 1, x: 0, duration: reduce ? 0.01 : 0.45, ease: 'power3.out' });
     },
@@ -3220,7 +3251,7 @@ function frame(now) {
   }
   halo.style.opacity = (P.glow * lerp(A.glow, B.glow, mix) * S.vis * S.intro * (1 - U.uNoise.value) * (1 - bl * 0.75)).toFixed(3);
   halo.style.transform = `translate(${P.x}px, ${P.y}px) scale(${(R * 3.4) / 200})`;
-  if (U.uSys.value > 0.01) rdSys.textContent = `Mezcla ${es(mix)} · Sistema ${es(U.uSys.value)}`;
+  if (U.uSys.value > 0.01) rdSys.textContent = tf('Mezcla {m} · Sistema {s}', { m: es(mix), s: es(U.uSys.value) });
   let seam = 1;
   for (const st of M.st) {
     const d = (sy - st.f) / vh;
@@ -3376,7 +3407,7 @@ $('.intro-l').addEventListener('pointerleave', () => { const r = $('#hola').getB
 $$('.about-dd').forEach(d => d.addEventListener('toggle', () => { measure(); setTimeout(measure, 600); }));
 $('#copyMail').addEventListener('click', async e => {
   const b = e.currentTarget, mail = 'hola@homer0.es';
-  try { await navigator.clipboard.writeText(mail); b.textContent = 'Correo copiado'; $('#live').textContent = 'Correo copiado'; }
+  try { await navigator.clipboard.writeText(mail); b.textContent = t('Correo copiado'); $('#live').textContent = t('Correo copiado'); }
   catch { const rg = document.createRange(); rg.selectNodeContents(b); getSelection().removeAllRanges(); getSelection().addRange(rg); }
   setTimeout(() => { b.textContent = mail; }, 1800);
 });
@@ -3422,7 +3453,7 @@ const tick = () => {
 tick(); setInterval(tick, 1000);
 
 const baseTitle = document.title;
-document.addEventListener('visibilitychange', () => { document.title = document.hidden ? 'homer0.es · el 0 te espera' : baseTitle; });
+document.addEventListener('visibilitychange', () => { document.title = document.hidden ? t('homer0.es · el 0 te espera') : baseTitle; });
 
 let rz;
 let rzS = '';
@@ -3466,13 +3497,30 @@ async function boot() {
   window.__h0ok = true;
   root.classList.toggle('no-gl', !renderer);
   if (renderer) renderer.debug.onShaderError = () => { root.classList.add('no-gl'); S.vis = 0; };
+  // tras cambiar de idioma se vuelve al mismo punto y sin intro
+  const salto = window.H0I18N.salto();
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  if (!late) scrollTo(0, 0);
+  if (!late && !salto) scrollTo(0, 0);
   measure();
   buildLoader();
   requestAnimationFrame(frame);
 
-  if (reduce || !renderer || !window.gsap || late) { skipIntro(); return; }
+  if (reduce || !renderer || !window.gsap || late || salto) {
+    skipIntro();
+    if (salto && salto.y) {
+      // la página aún se está midiendo: se insiste unos frames hasta quedar en la misma sección y a la misma altura dentro de ella
+      const destino = () => { const s = salto.id && document.getElementById(salto.id); return s ? s.getBoundingClientRect().top + scrollY + salto.off : salto.y; };
+      const ir = (n = 0) => {
+        const y = Math.max(0, Math.round(destino()));
+        // primero el scroll nativo (Lenis aún no acepta saltos al arrancar) y luego Lenis, para que siga desde ahí
+        scrollTo(0, y);
+        if (lenis) lenis.scrollTo(y, { immediate: true, force: true });
+        if (Math.abs(scrollY - y) > 2 && n < 40) setTimeout(() => ir(n + 1), 50); else measure();
+      };
+      requestAnimationFrame(() => { measure(); ir(); });
+    }
+    return;
+  }
   gsap.set('#wm .ch', { y: 0, yPercent: 108 });
   // «es» se queda en el DOM para no mover el wordmark; se revela letra a letra
   const esT = $('#esT');
