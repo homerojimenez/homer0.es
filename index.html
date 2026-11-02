@@ -92,8 +92,10 @@ body {
   transition: --h1 .9s ease, --h2 .9s ease;
 }
 .sistema .halo { visibility: hidden; }
-/* el lienzo mide el alto grande de la pantalla (100lvh): en el móvil no se estira cuando la barra del navegador aparece o se esconde */
-#gl { position: fixed; left: 0; top: 0; width: 100%; height: 100vh; height: 100lvh; z-index: 1; display: block; pointer-events: none; }
+/* el lienzo mide el alto grande de la pantalla (100lvh): en el móvil no se estira cuando la barra del navegador aparece o se esconde;
+   y sobresale --bleed por cada lado, para que el borde del desenfoque quede fuera de la vista y nunca dibuje un marco */
+:root { --bleed: 56px; }
+#gl { position: fixed; left: calc(-1 * var(--bleed)); top: calc(-1 * var(--bleed)); width: calc(100% + 2 * var(--bleed)); height: calc(100vh + 2 * var(--bleed)); height: calc(100lvh + 2 * var(--bleed)); z-index: 1; display: block; pointer-events: none; }
 .grain {
   position: fixed; inset: -50%; z-index: 4; pointer-events: none; opacity: .05; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -2868,7 +2870,7 @@ buildCreatives();
 /* ------------------------------------------------------------------ */
 /* Medidas y keyframes                                                 */
 /* ------------------------------------------------------------------ */
-let vw = innerWidth, vh = innerHeight, mobile = vw < 760, noHover = false;
+let vw = innerWidth, vh = innerHeight, cw = vw, ch = vh, mobile = vw < 760, noHover = false;
 const M = { capStack: false, capR: 0, aboutL: 0, aboutStack: false, cards: [], slotH: null, slotE: null, st: [], beats: [], maxScroll: 1, restH: null, restE: null, glass: [], labW: 0, offA: 1.5, offU: [0.85, 0.53], turns: 8 };
 const dotEl = $('#dot');
 const glassEls = $$('.glass');
@@ -2882,7 +2884,9 @@ function docBox(el) {
 function centerR() { return mobile ? Math.min(vw * 0.33, vh * 0.24) : Math.min(vw, vh) * 0.28; }
 function measure() {
   // el canvas fijo ocupa el viewport sin la barra de scroll: medir lo mismo que él
-  vw = root.clientWidth || innerWidth; vh = canvas.clientHeight || root.clientHeight || innerHeight;
+  const bleed = parseFloat(getComputedStyle(root).getPropertyValue('--bleed')) || 0;
+  vw = root.clientWidth || innerWidth; vh = (canvas.clientHeight ? canvas.clientHeight - 2 * bleed : 0) || root.clientHeight || innerHeight;
+  cw = vw + 2 * bleed; ch = vh + 2 * bleed;
   mobile = matchMedia('(max-width: 760px)').matches;
   noHover = matchMedia('(hover: none)').matches;
   measureCreatives();
@@ -2933,11 +2937,11 @@ function measure() {
   root.style.setProperty('--sd', `${Math.round(centerR() * 2.14 + (mobile ? 28 : 64))}px`);
   if (renderer) {
     renderer.setPixelRatio(S.lowRes ? 0.6 : Math.min(devicePixelRatio, mobile ? 1.5 : 2));
-    renderer.setSize(vw, vh, false);
+    renderer.setSize(cw, ch, false);
     PU.uPx.value = renderer.getPixelRatio();
     S.lastR = 0;
   }
-  camera.aspect = vw / vh; camera.updateProjectionMatrix();
+  camera.aspect = cw / ch; camera.updateProjectionMatrix();
 }
 
 const slotPose = (s, sy) => ({ x: s.x, y: s.y - sy, r: s.h / 2, core: 0, glow: 0.4, blur: 0 });
@@ -3078,7 +3082,7 @@ function frame(now) {
     if (renderer && low !== S.lowRes) {
       S.lowRes = low;
       renderer.setPixelRatio(low ? 0.6 : Math.min(devicePixelRatio, mobile ? 1.5 : 2));
-      renderer.setSize(vw, vh, false);
+      renderer.setSize(cw, ch, false);
       PU.uPx.value = renderer.getPixelRatio();
       S.lastR = 0;
     }
@@ -3110,7 +3114,7 @@ function frame(now) {
   S.spin *= 0.95;
   S.rotY += reduce ? 0 : dt * lerp(A.spin, B.spin, mix) + S.spin * dt;
   U.uEnvRot.value = (reduce ? 0 : S.time * 0.05) + S.mx * 0.35 + lerp(A.rot, B.rot, mix);
-  const wpp = (2 * CAM_Z * Math.tan(THREE.MathUtils.degToRad(FOV / 2))) / vh;
+  const wpp = (2 * CAM_Z * Math.tan(THREE.MathUtils.degToRad(FOV / 2))) / ch;
   const Rw = Math.max(R * S.vis, 0.0001) * wpp;
   orb.position.set((P.x - vw / 2) * wpp, -(P.y - vh / 2) * wpp, 0);
   orb.scale.setScalar(Rw);
